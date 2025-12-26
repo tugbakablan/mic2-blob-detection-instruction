@@ -1,0 +1,15 @@
+blob1	MAR = 0; rd	
+blob2	H = LV	
+blob3	MAR = H + 16; rd	
+blob4	H = MDR	
+blob5	MAR = 0; rd	
+loop1	TOS = MDR	
+loop2	OPC = H - TOS	
+test1	Z = OPC - 10; if (Z > 0) goto found	
+test2	Z = -10 - OPC; if (Z > 0) goto found	
+step1	MAR = MAR + 1; rd	
+step2	Z = MAR - 65536; if (Z < 0) goto loop1	
+found1	H = MAR	
+found2	LV01 = (H % 256) * 720 / 256	
+found3	LV02 = (H / 256) * 720 / 256	
+done	goto Main1
